@@ -1,6 +1,7 @@
 resources:
 - ws.yaml
 - service.yaml
+- ingress.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
