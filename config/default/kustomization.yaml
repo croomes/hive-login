@@ -24,6 +24,7 @@ bases:
 #- ../prometheus
 
 patchesStrategicMerge:
+- ws_image_patch.yaml
 # Protect the /metrics endpoint by putting it behind auth.
 # If you want your login controller to expose the /metrics
 # endpoint w/o any authn/z, please comment the following line.
@@ -40,7 +41,7 @@ patchesStrategicMerge:
 # [CERTMANAGER] To enable cert-manager, uncomment all sections with 'CERTMANAGER'.
 # Uncomment 'CERTMANAGER' sections in crd/kustomization.yaml to enable the CA injection in the admission webhooks.
 # 'CERTMANAGER' needs to be enabled to use ca injection
-- webhookcainjection_patch.yaml
+#- webhookcainjection_patch.yaml
 
 # the following config is for teaching kustomize how to do var substitution
 #vars:
