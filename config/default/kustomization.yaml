@@ -55,11 +55,11 @@ vars:
   objref:
     kind: Service
     version: v1
-    name: login
+    name: web-service
   fieldref:
     fieldpath: metadata.namespace
 - name: SERVICE_NAME
   objref:
     kind: Service
     version: v1
-    name: login
+    name: web-service
