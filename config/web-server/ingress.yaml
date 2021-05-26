@@ -15,7 +15,7 @@ spec:
   - host: idp.do.storageos.net
     http:
       paths:
-      - path: /foo/
+      - path: /baz/
         pathType: Exact
         backend:
           service:
