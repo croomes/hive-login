@@ -5,7 +5,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: role
+  name: ws-role
 subjects:
 - kind: ServiceAccount
   name: sa
