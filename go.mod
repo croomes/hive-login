@@ -1,4 +1,4 @@
-module github.com/darkowlzz/kb-webserver
+module github.com/croomes/hive-login
 
 go 1.15
 

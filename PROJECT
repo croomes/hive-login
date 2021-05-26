@@ -1,6 +1,6 @@
-domain: my.domain
+domain: storageos.com
 layout:
 - go.kubebuilder.io/v3
-projectName: kb-webserver
-repo: github.com/darkowlzz/kb-webserver
+projectName: hive-login
+repo: github.com/croomes/hive-login
 version: "3"

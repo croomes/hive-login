@@ -1,6 +1,6 @@
-# kb-webserver
+# hive-login
 
-An example project for serving web pages using the kubebuilder webhook server.
+An example project for serving a login page using the kubebuilder webhook server.
 
 ## Instructions
 
