@@ -2,25 +2,25 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    control-plane: controller-manager
+    control-plane: login
   name: system
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: controller-manager
+  name: login
   namespace: system
   labels:
-    control-plane: controller-manager
+    control-plane: login
 spec:
   selector:
     matchLabels:
-      control-plane: controller-manager
+      control-plane: login
   replicas: 1
   template:
     metadata:
       labels:
-        control-plane: controller-manager
+        control-plane: login
     spec:
       securityContext:
         runAsNonRoot: true
@@ -29,7 +29,7 @@ spec:
         - /manager
         args:
         - --leader-elect
-        image: controller:latest
+        image: croomes/hive-login:latest
         name: manager
         securityContext:
           allowPrivilegeEscalation: false
@@ -52,5 +52,5 @@ spec:
           requests:
             cpu: 100m
             memory: 20Mi
-      serviceAccountName: controller-manager
+      serviceAccountName: login
       terminationGracePeriodSeconds: 10
