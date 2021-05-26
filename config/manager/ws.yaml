@@ -31,6 +31,10 @@ spec:
         - --leader-elect
         image: croomes/hive-login:develop
         name: ws
+        ports:
+        - containerPort: 443
+          name: web-server
+          protocol: TCP
         securityContext:
           allowPrivilegeEscalation: false
         livenessProbe:
