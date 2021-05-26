@@ -20,7 +20,6 @@ spec:
         backend:
           service:
             name: web-service
-            namespace: login
             port:
               number: 443
 
