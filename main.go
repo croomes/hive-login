@@ -52,7 +52,7 @@ func main() {
 		Port:                   9443,
 		HealthProbeBindAddress: probeAddr,
 		LeaderElection:         enableLeaderElection,
-		LeaderElectionID:       "e990bcb8.my.domain",
+		LeaderElectionID:       "hive-login.storageos.com",
 	})
 	if err != nil {
 		setupLog.Error(err, "unable to start manager")

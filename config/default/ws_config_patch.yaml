@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login
+  namespace: system
+spec:
+  template:
+    spec:
+      containers:
+      - name: ws
+        args:
+        - "--config=ws_config.yaml"
+        volumeMounts:
+        - name: ws-config
+          mountPath: /ws_config.yaml
+          subPath: ws_config.yaml
+      volumes:
+      - name: ws-config
+        configMap:
+          name: ws-config
