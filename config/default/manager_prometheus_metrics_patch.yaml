@@ -1,9 +1,9 @@
 
-# This patch enables Prometheus scraping for the manager pod.
+# This patch enables Prometheus scraping for the web server pod.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: controller-manager
+  name: ws
   namespace: system
 spec:
   template:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       # Expose the prometheus metrics on default port
-      - name: manager
+      - name: ws
         ports:
         - containerPort: 8080
           name: metrics

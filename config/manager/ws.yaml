@@ -8,7 +8,7 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: login
+  name: ws
   namespace: system
   labels:
     control-plane: login
@@ -29,7 +29,7 @@ spec:
         - /manager
         args:
         - --leader-elect
-        image: croomes/hive-login:latest
+        image: croomes/hive-login:develop
         name: ws
         securityContext:
           allowPrivilegeEscalation: false
@@ -52,5 +52,5 @@ spec:
           requests:
             cpu: 100m
             memory: 20Mi
-      serviceAccountName: login
+      serviceAccountName: sa
       terminationGracePeriodSeconds: 10
