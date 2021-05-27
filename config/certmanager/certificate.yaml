@@ -18,8 +18,11 @@ spec:
   # $(SERVICE_NAME) and $(SERVICE_NAMESPACE) will be substituted by kustomize
   commonName: $(SERVICE_NAME).$(SERVICE_NAMESPACE).svc
   dnsNames:
-  - $(SERVICE_NAME).$(SERVICE_NAMESPACE).svc.cluster.local
+  #- $(SERVICE_NAME).$(SERVICE_NAMESPACE).svc.cluster.local
+  - idp.do.storageos.net
   issuerRef:
-    kind: Issuer
-    name: selfsigned-issuer
+  #  kind: Issuer
+  #  name: selfsigned-issuer
+    kind: ClusterIssuer
+    name: letsencrypt-staging
   secretName: web-server-cert # this secret will not be prefixed, since it's not managed by kustomize
