@@ -6,7 +6,6 @@ metadata:
   labels:
     control-plane: login
   name: login-metrics-monitor
-  namespace: system
 spec:
   endpoints:
     - path: /metrics
