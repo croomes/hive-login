@@ -20,6 +20,8 @@ spec:
     metadata:
       labels:
         control-plane: login
+      annotations:
+        kubectl.kubernetes.io/default-logs-container: ws
     spec:
       securityContext:
         runAsNonRoot: true
