@@ -19,7 +19,7 @@ spec:
         pathType: Exact
         backend:
           service:
-            name: web-service
+            name: login-web-service
             port:
               number: 443
 
