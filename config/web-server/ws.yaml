@@ -30,6 +30,7 @@ spec:
         args:
         - --leader-elect
         image: croomes/hive-login:develop
+        imagePullPolicy: Always
         name: ws
         ports:
         - containerPort: 443

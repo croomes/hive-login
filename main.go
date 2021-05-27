@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"net/http"
 	"os"
 
@@ -59,14 +60,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	newFH := FooHandler{Name: "kubebuilder"}
+	login := LoginHandler{Name: "kubebuilder"}
 
 	// NOTE: Sometimes web browsers automatically add a trailing slash to the
 	// address and that results in a 404 when the registered path has no
 	// trailing slash. Registering with trailing slash is safer.
 
-	// Custom handler.
-	mgr.GetWebhookServer().Register("/foo/", newFH)
+	// Login handler.
+	mgr.GetWebhookServer().Register("/login/", login)
 
 	// File server handler. This helps serve all the static files - html, css,
 	// js, etc.
@@ -91,15 +92,15 @@ func main() {
 	}
 }
 
-type FooHandler struct {
+type LoginHandler struct {
 	Name string
 }
 
-func (fh FooHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (fh LoginHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Write to the response write directly.
-	// fmt.Fprintf(w, "Hello %s", fh.Name)
+	fmt.Fprintf(w, "Hello %s", fh.Name)
 
 	// Serve webpage.
 	// http.ServeFile(w, r, "static/index.html")
-	http.ServeFile(w, r, "static/")
+	// http.ServeFile(w, r, "static/")
 }
