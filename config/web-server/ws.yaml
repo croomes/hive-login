@@ -32,7 +32,7 @@ spec:
         imagePullPolicy: Always
         name: ws
         ports:
-        - containerPort: 443
+        - containerPort: 9443
           name: web-server
           protocol: TCP
         securityContext:
