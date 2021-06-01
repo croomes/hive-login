@@ -1,0 +1,3 @@
+- op: add
+  path: /spec/template/spec/containers/0/args/-
+  value: --issuer-root-ca=/tmp/ca-certs/issuer-root-ca.crt

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ws
+spec:
+  template:
+    spec:
+      containers:
+      - name: ws
+        volumeMounts:
+        - mountPath: /tmp/ca-certs
+          name: ca-cert
+          readOnly: true
+      volumes:
+      - name: ca-cert
+        configMap:
+          name: idp-root-ca.crt

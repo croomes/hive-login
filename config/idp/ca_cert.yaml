@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: idp-root-ca.crt
+data:
+  #  contents of idp.do.storageos.net.tls/dex secret.  Not sure how to automate this.
+  issuer-root-ca.crt: |
+    -----BEGIN CERTIFICATE-----
+    MIIC7TCCAdWgAwIBAgIUcZZbu8h9AE5Gc0PIyjTxkLCib3owDQYJKoZIhvcNAQEL
+    BQAwEjEQMA4GA1UEAwwHa3ViZS1jYTAeFw0yMTA1MjUyMTM1NTZaFw0yMTA2MDQy
+    MTM1NTZaMBIxEDAOBgNVBAMMB2t1YmUtY2EwggEiMA0GCSqGSIb3DQEBAQUAA4IB
+    DwAwggEKAoIBAQD5MhfaYIy3GpzIhsj2q/6FpC3a6wcqHwGCkg5/IhzrczrAB9ax
+    qFsMl1Ckl3ykn6goLQoE+5JGmh6ugV2BT3jdXQRuBv7rBq9WyUK0f/nHHas6PR4e
+    L+VhAgjPYV1TIT3WGnxR/EIov8P5yRWyMsEo6Ifp3tZmUzJ9UkQqwganlhJlwpm6
+    /wq8c3+KGhElyCPvmNyVHZNjs2ED4Ss+J6Ph3seB8LRd968pNF5RwVEoWDdqkfld
+    OrtaFg25FL6CIuamDFCbE+6/atHtvQwssA+u0k9PEO+gFndttQMxvRL1m9IcT/2B
+    +GQuhcC4tO6WhSncvXF8BCYE3zK+9ct3mjmxAgMBAAGjOzA5MAkGA1UdEwQCMAAw
+    CwYDVR0PBAQDAgXgMB8GA1UdEQQYMBaCFGlkcC5kby5zdG9yYWdlb3MubmV0MA0G
+    CSqGSIb3DQEBCwUAA4IBAQBclPQX+7cbAr91VV2vN0ap6V/5scjn0jAwRQ/kGV53
+    nmHsoKhr8foiuSdAmRS3jHG41es9ZP3H0GLBxR7HCEeSkdDW66UAx4X7NBOCLwaC
+    NV+7B+Jyfw+h5X3TnXWMKVLAApxCH/LLPyuIoPEFFebVYJZ0c0CkJ3G5cNNYToxd
+    1oZb1DIDaCCaEopAkqwkmhPyM1aeQicyLOolltTFwZlJjNYtM7heVNMHbozc7VeP
+    CGugcbWWIT5oZwHl6GHQJgLPkTfC+WTLoJusFCnk61liLgk/92smiLbrnyoLrCGT
+    64Y627wBU+cQe6SRMxfJJ36LANDCPCDOzNcIENA7Mepr
+    -----END CERTIFICATE-----
