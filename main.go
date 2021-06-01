@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"net/http"
 	"os"
 
@@ -16,7 +15,10 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
+
 	//+kubebuilder:scaffold:imports
+
+	"github.com/croomes/hive-login/pkg/auth"
 )
 
 var (
@@ -31,9 +33,24 @@ func init() {
 }
 
 func main() {
+	var clientID string
+	var clientSecret string
+	var redirectURI string
+	var issuerURL string
+	var tlsCert string
+	var tlsKey string
+	var rootCAs string
 	var metricsAddr string
 	var enableLeaderElection bool
 	var probeAddr string
+	flag.StringVar(&clientID, "client-id", "example-app", "OAuth2 client ID of this application.")
+	flag.StringVar(&clientSecret, "client-secret", "ZXhhbXBsZS1hcHAtc2VjcmV0", "OAuth2 client secret of this application.")
+	flag.StringVar(&redirectURI, "redirect-uri", "http://127.0.0.1:5555/callback", "Callback URL for OAuth2 responses.")
+	flag.StringVar(&issuerURL, "issuer", "http://127.0.0.1:5556/dex", "URL of the OpenID Connect issuer.")
+	flag.StringVar(&tlsCert, "tls-cert", "", "X509 cert file to present when serving HTTPS.")
+	flag.StringVar(&tlsKey, "tls-key", "", "Private key for the HTTPS cert.")
+	flag.StringVar(&rootCAs, "issuer-root-ca", "", "Root certificate authorities for the issuer. Defaults to host certs.")
+
 	flag.StringVar(&metricsAddr, "metrics-bind-address", ":8080", "The address the metric endpoint binds to.")
 	flag.StringVar(&probeAddr, "health-probe-bind-address", ":8081", "The address the probe endpoint binds to.")
 	flag.BoolVar(&enableLeaderElection, "leader-elect", false,
@@ -60,14 +77,20 @@ func main() {
 		os.Exit(1)
 	}
 
-	login := LoginHandler{Name: "kubebuilder"}
+	auth, err := auth.New(clientID, clientSecret, issuerURL, redirectURI, rootCAs)
+	if err != nil {
+		setupLog.Error(err, "unable to initialize auth handlers")
+		os.Exit(1)
+	}
 
 	// NOTE: Sometimes web browsers automatically add a trailing slash to the
 	// address and that results in a 404 when the registered path has no
 	// trailing slash. Registering with trailing slash is safer.
 
 	// Login handler.
-	mgr.GetWebhookServer().Register("/login/", login)
+	mgr.GetWebhookServer().Register("/", auth.IndexHandler())
+	mgr.GetWebhookServer().Register("/login/", auth.LoginHandler())
+	mgr.GetWebhookServer().Register("/callback/", auth.CallbackHandler())
 
 	// File server handler. This helps serve all the static files - html, css,
 	// js, etc.
@@ -90,17 +113,4 @@ func main() {
 		setupLog.Error(err, "problem running manager")
 		os.Exit(1)
 	}
-}
-
-type LoginHandler struct {
-	Name string
-}
-
-func (fh LoginHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	// Write to the response write directly.
-	fmt.Fprintf(w, "Hello %s", fh.Name)
-
-	// Serve webpage.
-	// http.ServeFile(w, r, "static/index.html")
-	// http.ServeFile(w, r, "static/")
 }
