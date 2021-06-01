@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"net/http"
 	"os"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
@@ -88,14 +87,8 @@ func main() {
 	// trailing slash. Registering with trailing slash is safer.
 
 	// Login handler.
-	mgr.GetWebhookServer().Register("/", auth.IndexHandler())
 	mgr.GetWebhookServer().Register("/login/", auth.LoginHandler())
 	mgr.GetWebhookServer().Register("/callback/", auth.CallbackHandler())
-
-	// File server handler. This helps serve all the static files - html, css,
-	// js, etc.
-	staticfs := http.StripPrefix("/baz/", http.FileServer(http.Dir("./static")))
-	mgr.GetWebhookServer().Register("/baz/", staticfs)
 
 	//+kubebuilder:scaffold:builder
 

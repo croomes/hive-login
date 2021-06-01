@@ -22,6 +22,21 @@ func New(oauth2 *oauth2.Config, offlineAsScope bool) *Handler {
 }
 
 func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodHead, http.MethodGet:
+		h.index(w, r)
+	case http.MethodPost:
+		h.login(w, r)
+	default:
+		http.Error(w, http.StatusText(http.StatusForbidden), http.StatusForbidden)
+	}
+}
+
+func (h Handler) index(w http.ResponseWriter, r *http.Request) {
+	renderIndex(w)
+}
+
+func (h Handler) login(w http.ResponseWriter, r *http.Request) {
 	var scopes []string
 	if extraScopes := r.FormValue("extra_scopes"); extraScopes != "" {
 		scopes = strings.Split(extraScopes, " ")

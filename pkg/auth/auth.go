@@ -9,7 +9,6 @@ import (
 	"golang.org/x/oauth2"
 
 	"github.com/croomes/hive-login/pkg/auth/callback"
-	"github.com/croomes/hive-login/pkg/auth/index"
 	"github.com/croomes/hive-login/pkg/auth/login"
 )
 
@@ -22,7 +21,6 @@ type AuthProvider struct {
 
 	client *http.Client
 
-	indexHandler    http.Handler
 	loginHandler    http.Handler
 	callbackHandler http.Handler
 }
@@ -83,14 +81,9 @@ func New(clientID string, clientSecret string, issuerURL string, redirectURI str
 		redirectURI:     redirectURI,
 		provider:        provider,
 		client:          client,
-		indexHandler:    index.Handler{},
 		loginHandler:    login.New(oauth2Config, offlineAsScope),
 		callbackHandler: callback.New(redirectURI, client, oauth2Config, provider.Verifier(&oidc.Config{ClientID: clientID})),
 	}, nil
-}
-
-func (p *AuthProvider) IndexHandler() http.Handler {
-	return p.indexHandler
 }
 
 func (p *AuthProvider) LoginHandler() http.Handler {
