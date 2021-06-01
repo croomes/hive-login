@@ -14,14 +14,7 @@ spec:
   rules:
   - host: idp.do.storageos.net
     http:
-      paths:
-      - path: /
-        pathType: Exact
-        backend:
-          service:
-            name: login-web-service
-            port:
-              number: 443        
+      paths:       
       - path: /login/
         pathType: Exact
         backend:
