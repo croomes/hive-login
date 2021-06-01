@@ -42,7 +42,7 @@ func main() {
 	var metricsAddr string
 	var enableLeaderElection bool
 	var probeAddr string
-	flag.StringVar(&clientID, "client-id", "example-app", "OAuth2 client ID of this application.")
+	flag.StringVar(&clientID, "client-id", "hive-login", "OAuth2 client ID of this application.")
 	flag.StringVar(&clientSecret, "client-secret", "ZXhhbXBsZS1hcHAtc2VjcmV0", "OAuth2 client secret of this application.")
 	flag.StringVar(&redirectURI, "redirect-uri", "http://127.0.0.1:5555/callback", "Callback URL for OAuth2 responses.")
 	flag.StringVar(&issuerURL, "issuer", "http://127.0.0.1:5556/dex", "URL of the OpenID Connect issuer.")
