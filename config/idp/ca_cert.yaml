@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: idp-root-ca.crt
 data:
-  #  contents of idp.do.storageos.net.tls/dex secret.  Not sure how to automate this.
+  #  contents of dex.do.storageos.net.tls/dex secret.  Not sure how to automate this.
   issuer-root-ca.crt: |
     -----BEGIN CERTIFICATE-----
     MIIC7TCCAdWgAwIBAgIUcZZbu8h9AE5Gc0PIyjTxkLCib3owDQYJKoZIhvcNAQEL
