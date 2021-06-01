@@ -23,7 +23,7 @@ spec:
         - /manager
         args:
         - --leader-elect
-        - --issuer=https://idp.do.storageos.net/dex/
+        - --issuer=https://idp.do.storageos.net/dex
         image: croomes/hive-login:develop
         imagePullPolicy: Always
         name: ws
