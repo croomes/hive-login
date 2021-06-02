@@ -15,15 +15,15 @@ spec:
   - host: idp.do.storageos.net
     http:
       paths:       
-      - path: /login/
-        pathType: Exact
+      - path: /login
+        pathType: Prefix
         backend:
           service:
             name: login-web-service
             port:
               number: 443
-      - path: /callback/
-        pathType: Exact
+      - path: /callback
+        pathType: Prefix
         backend:
           service:
             name: login-web-service
