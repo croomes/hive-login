@@ -35,8 +35,6 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		token *oauth2.Token
 	)
 
-	fmt.Printf("callback handler: method=%s\n", r.Method)
-
 	ctx := oidc.ClientContext(r.Context(), h.client)
 	switch r.Method {
 	case http.MethodGet:
