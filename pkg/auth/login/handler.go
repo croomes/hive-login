@@ -7,7 +7,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-const exampleAppState = "todo state"
+const defaultState = "todostate"
 
 type Handler struct {
 	oauth2         *oauth2.Config
@@ -56,12 +56,12 @@ func (h Handler) login(w http.ResponseWriter, r *http.Request) {
 	authCodeURL := ""
 	scopes = append(scopes, "openid", "profile", "email")
 	if r.FormValue("offline_access") != "yes" {
-		authCodeURL = h.OAuth2(scopes).AuthCodeURL(exampleAppState)
+		authCodeURL = h.OAuth2(scopes).AuthCodeURL(defaultState)
 	} else if h.offlineAsScope {
 		scopes = append(scopes, "offline_access")
-		authCodeURL = h.OAuth2(scopes).AuthCodeURL(exampleAppState)
+		authCodeURL = h.OAuth2(scopes).AuthCodeURL(defaultState)
 	} else {
-		authCodeURL = h.OAuth2(scopes).AuthCodeURL(exampleAppState, oauth2.AccessTypeOffline)
+		authCodeURL = h.OAuth2(scopes).AuthCodeURL(defaultState, oauth2.AccessTypeOffline)
 	}
 	if connectorID != "" {
 		authCodeURL = authCodeURL + "&connector_id=" + connectorID

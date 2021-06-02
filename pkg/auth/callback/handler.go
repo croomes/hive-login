@@ -11,7 +11,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-const exampleAppState = "todo state"
+const defaultState = "todostate"
 
 type Handler struct {
 	redirectURI string
@@ -35,6 +35,8 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		token *oauth2.Token
 	)
 
+	fmt.Printf("callback handler: method=%s\n", r.Method)
+
 	ctx := oidc.ClientContext(r.Context(), h.client)
 	switch r.Method {
 	case http.MethodGet:
@@ -48,8 +50,8 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, fmt.Sprintf("no code in request: %q", r.Form), http.StatusBadRequest)
 			return
 		}
-		if state := r.FormValue("state"); state != exampleAppState {
-			http.Error(w, fmt.Sprintf("expected state %q got %q", exampleAppState, state), http.StatusBadRequest)
+		if state := r.FormValue("state"); state != defaultState {
+			http.Error(w, fmt.Sprintf("expected state %q got %q", defaultState, state), http.StatusBadRequest)
 			return
 		}
 		token, err = h.oauth2.Exchange(ctx, code)

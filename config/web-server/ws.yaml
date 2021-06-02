@@ -24,7 +24,8 @@ spec:
         args:
         - --leader-elect
         - --issuer=https://idp.do.storageos.net/dex
-        - --redirect-uri=https://idp.do.storageos.net/dex/callback
+        # - --redirect-uri=https://idp.do.storageos.net/dex/callback
+        - --redirect-uri=https://idp.do.storageos.net/callback
         image: croomes/hive-login:develop
         imagePullPolicy: Always
         name: ws
