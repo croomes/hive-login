@@ -16,7 +16,7 @@ input { display: table-cell; }
     </style>
   </head>
   <body>
-    <form action="/login/" method="post">
+    <form action="/login" method="post">
       <p>
         <label> Authenticate for: </label>
         <input type="text" name="cross_client" placeholder="list of client-ids">

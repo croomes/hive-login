@@ -87,8 +87,8 @@ func main() {
 	// trailing slash. Registering with trailing slash is safer.
 
 	// Login handler.
-	mgr.GetWebhookServer().Register("/login/", auth.LoginHandler())
-	mgr.GetWebhookServer().Register("/callback/", auth.CallbackHandler())
+	mgr.GetWebhookServer().Register("/login", auth.LoginHandler())
+	mgr.GetWebhookServer().Register("/callback", auth.CallbackHandler())
 
 	//+kubebuilder:scaffold:builder
 
