@@ -14,6 +14,7 @@
 
 bases:
 - ../cert-manager
+- ../hairpin-proxy
 - ../dex
 #- ../idp
 - ../rbac
