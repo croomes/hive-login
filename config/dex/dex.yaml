@@ -34,9 +34,8 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /etc/dex/cfg
-        - name: tls
-          mountPath: /etc/dex/tls
-
+        # - name: tls
+        #   mountPath: /etc/dex/tls
         env:
         - name: GITHUB_CLIENT_ID
           valueFrom:
@@ -60,9 +59,9 @@ spec:
           items:
           - key: config.yaml
             path: config.yaml
-      - name: tls
-        secret:
-          secretName: login.do.storageos.net.tls
+      # - name: tls
+      #   secret:
+      #     secretName: login.do.storageos.net.tls
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
