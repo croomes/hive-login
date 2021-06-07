@@ -13,6 +13,7 @@ namePrefix: login-
 #  someName: someValue
 
 bases:
+- ../dex
 - ../idp
 - ../rbac
 - ../web-server

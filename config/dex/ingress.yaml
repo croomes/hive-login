@@ -2,9 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: web-service
+  namespace: dex
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   tls:
@@ -15,17 +16,10 @@ spec:
   - host: login.do.storageos.net
     http:
       paths:       
-      - path: /login
+      - path: /dex
         pathType: Prefix
         backend:
           service:
-            name: login-web-service
+            name: dex
             port:
-              number: 443
-      - path: /callback
-        pathType: Prefix
-        backend:
-          service:
-            name: login-web-service
-            port:
-              number: 443              
+              number: 5556

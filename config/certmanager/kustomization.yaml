@@ -1,6 +1,9 @@
-
 resources:
-- certificate.yaml
+- cert-manager.yaml
+- ingress.yaml
+- issuer-letsencrypt-prod.yaml
+- issuer-letsencrypt-staging.yaml
+- issuer-self-signed.yaml
 
 configurations:
 - kustomizeconfig.yaml
