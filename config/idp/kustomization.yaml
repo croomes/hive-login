@@ -1,3 +1,2 @@
-namespace: login
 resources:
 - ca_cert.yaml

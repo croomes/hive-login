@@ -15,7 +15,7 @@
 bases:
 - ../cert-manager
 - ../dex
-- ../idp
+#- ../idp
 - ../rbac
 #- ../web-server
 # [PROMETHEUS] To enable prometheus monitor, uncomment all sections with 'PROMETHEUS'.

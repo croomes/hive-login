@@ -5,3 +5,4 @@ kind: Role
 metadata:
   creationTimestamp: null
   name: ws-role
+  namespace: login

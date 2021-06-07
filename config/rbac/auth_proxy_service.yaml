@@ -4,6 +4,7 @@ metadata:
   labels:
     control-plane: login
   name: metrics-service
+  namespace: login
 spec:
   ports:
   - name: https
