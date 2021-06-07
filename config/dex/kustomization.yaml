@@ -1,3 +1,4 @@
+namespace: dex
 resources:
 - dex.yaml
 - ingress.yaml
