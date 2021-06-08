@@ -5,12 +5,13 @@ metadata:
   namespace: dex
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   tls:
   - hosts:
     - login.do.storageos.net
+    - dex.do.storageos.net
     secretName: ingress-cert
   rules:
   - host: login.do.storageos.net

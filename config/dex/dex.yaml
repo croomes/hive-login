@@ -34,8 +34,8 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /etc/dex/cfg
-        # - name: tls
-        #   mountPath: /etc/dex/tls
+        - name: tls
+          mountPath: /etc/dex/tls
         env:
         - name: GITHUB_CLIENT_ID
           valueFrom:
@@ -48,10 +48,10 @@ spec:
               name: github-client
               key: client-secret
 
-        # readinessProbe:
-        #   httpGet:
-        #     path: /healthz
-        #     port: 5556
+        readinessProbe:
+          httpGet:
+            path: /dex/healthz
+            port: 5556
       volumes:
       - name: config
         configMap:
@@ -59,9 +59,9 @@ spec:
           items:
           - key: config.yaml
             path: config.yaml
-      # - name: tls
-      #   secret:
-      #     secretName: login.do.storageos.net.tls
+      - name: tls
+        secret:
+          secretName: ingress-cert
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -89,8 +89,8 @@ data:
         inCluster: true
     web:
       http: 0.0.0.0:5556
-      # tlsCert: /etc/dex/tls/tls.crt
-      # tlsKey: /etc/dex/tls/tls.key
+      tlsCert: /etc/dex/tls/tls.crt
+      tlsKey: /etc/dex/tls/tls.key
     connectors:
     - type: github
       id: github
