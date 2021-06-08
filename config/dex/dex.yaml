@@ -61,7 +61,7 @@ spec:
             path: config.yaml
       - name: tls
         secret:
-          secretName: ingress-cert
+          secretName: dex-cert
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
