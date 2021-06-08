@@ -26,17 +26,12 @@ spec:
       - image: ghcr.io/dexidp/dex:v2.28.1
         name: dex
         command: ["/usr/local/bin/dex", "serve", "/etc/dex/cfg/config.yaml"]
-
         ports:
         - name: http
           containerPort: 5556
-        - name: https
-          containerPort: 5554
         volumeMounts:
         - name: config
           mountPath: /etc/dex/cfg
-        - name: tls
-          mountPath: /etc/dex/tls
         env:
         - name: GITHUB_CLIENT_ID
           valueFrom:
@@ -60,9 +55,6 @@ spec:
           items:
           - key: config.yaml
             path: config.yaml
-      - name: tls
-        secret:
-          secretName: dex-cert
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -90,9 +82,6 @@ data:
         inCluster: true
     web:
       http: 0.0.0.0:5556
-      https: 0.0.0.0:5554
-      tlsCert: /etc/dex/tls/tls.crt
-      tlsKey: /etc/dex/tls/tls.key
     connectors:
     - type: github
       id: github
@@ -134,23 +123,7 @@ spec:
     targetPort: 5556
     nodePort: 32000
   selector:
-    app: dex
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: dex-tls
-  namespace: dex
-spec:
-  type: NodePort
-  ports:
-  - name: dex
-    port: 5554
-    protocol: TCP
-    targetPort: 5554
-    nodePort: 32001
-  selector:
-    app: dex    
+    app: dex 
 ---
 apiVersion: v1
 kind: ServiceAccount
