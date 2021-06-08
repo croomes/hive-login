@@ -116,12 +116,7 @@ data:
       - 'https://login.do.storageos.net/callback'
       name: 'Hive login'
       secret: ZXhhbXBsZS1hcHAtc2VjcmV0
-    enablePasswordDB: true
-    staticPasswords:
-    - email: "admin@example.com"
-      hash: "$2y$12$ySto8PDzCTrG5U27cp/SheXWTqgExZIsHKypc1EHjZVtm5joYtZWa "
-      username: "admin"
-      userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+    enablePasswordDB: false
 ---
 apiVersion: v1
 kind: Service
