@@ -129,12 +129,28 @@ spec:
   type: NodePort
   ports:
   - name: dex
-    port: 5554
+    port: 5556
     protocol: TCP
-    targetPort: 5554
+    targetPort: 5556
     nodePort: 32000
   selector:
     app: dex
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dex-tls
+  namespace: dex
+spec:
+  type: NodePort
+  ports:
+  - name: dex
+    port: 5554
+    protocol: TCP
+    targetPort: 5554
+    nodePort: 32001
+  selector:
+    app: dex    
 ---
 apiVersion: v1
 kind: ServiceAccount
