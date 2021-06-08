@@ -22,4 +22,4 @@ spec:
           service:
             name: dex
             port:
-              number: 32000
+              number: 5556
