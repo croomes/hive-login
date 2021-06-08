@@ -28,9 +28,10 @@ spec:
         command: ["/usr/local/bin/dex", "serve", "/etc/dex/cfg/config.yaml"]
 
         ports:
-        - name: https
+        - name: http
           containerPort: 5556
-
+        - name: https
+          containerPort: 5554
         volumeMounts:
         - name: config
           mountPath: /etc/dex/cfg
@@ -89,6 +90,7 @@ data:
         inCluster: true
     web:
       http: 0.0.0.0:5556
+      https: 0.0.0.0:5554
       tlsCert: /etc/dex/tls/tls.crt
       tlsKey: /etc/dex/tls/tls.key
     connectors:
@@ -127,9 +129,9 @@ spec:
   type: NodePort
   ports:
   - name: dex
-    port: 5556
+    port: 5554
     protocol: TCP
-    targetPort: 5556
+    targetPort: 5554
     nodePort: 32000
   selector:
     app: dex
